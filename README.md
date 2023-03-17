@@ -1,6 +1,8 @@
 # voice4ixd
 Voice Assistant 4 Interaction Design
+This repository will serve as an exchange with the students of the [MAInD](http://maind.supsi.ch) during the Multimodal UX in Products of 2022/2023.
 
+You can find more information here:
 [Voice 4 IxD - Notion page](bit.ly/voice4ixd)
 
 ## Python + Picovoice and Arduino
