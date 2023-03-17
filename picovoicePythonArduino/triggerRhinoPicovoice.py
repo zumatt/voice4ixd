@@ -14,15 +14,21 @@ import pvrhino
 from pvrecorder import PvRecorder
 from serial import Serial
 import serial.tools.list_ports
+from time import sleep
 
-ports = serial.tools.list_ports.comports()
+arduinoPort = None
 
-for port, desc, hwid in sorted(ports):
+while(arduinoPort == None):
+    ports = serial.tools.list_ports.comports()
+    for port, desc, hwid in sorted(ports):
         if (port.__contains__("cu.usbmodem")):
             arduinoPort = port
             print("The arduino port is:")
             print(arduinoPort)
-
+    if arduinoPort == None:
+        print("Is not possible to see an Arduino connected...")
+        sleep(5)
+    
 ser = Serial(arduinoPort,9600)
 
 def arduinoWrite(x):
@@ -36,7 +42,7 @@ rhino = pvrhino.create(
     # Write here the AccessKey obtained from Picovoice Console (https://console.picovoice.ai/)
     access_key="ACCESS_KEY",
     # Insert here the path of your .rhn file, downloaded from Picovoice
-    context_path="picovoicePythonLib/help-me_en_mac_v2_1_0.rhn"
+    context_path="picovoicePythonArduino/picovoicePythonLib/help-me_en_mac_v2_1_0.rhn"
     )
 
 recorder = PvRecorder(device_index=-1, frame_length=rhino.frame_length)
