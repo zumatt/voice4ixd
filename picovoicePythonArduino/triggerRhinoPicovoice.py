@@ -73,7 +73,11 @@ while True:
             print('  }')
             print('}\n')
             print(inference.intent)
+
+            # Insert here the conditions to trigger Arduino
             if inference.intent == "projector":
                  arduinoWrite("Hello")
+            
         else:
+            # Insert here the conditions to trigger Arduino if the system will not recognise the command
             print("Didn't understand the command.\n")
