@@ -1,5 +1,5 @@
-# VOICE4IXD - MAInD 22/23
-# Coded by Matteo Subet on 17/03/2023
+# VOICE4IXD - MAInD 23/24
+# Coded by Matteo Subet on 04/06/2024 (from last year edition)
 # Code modified from https://github.com/Picovoice/rhino/blob/master/demo/python/rhino_demo_mic.py
 # Use python to bypass the wakeWord (Porcupine),
 # Connect an Arduino trough serial port to then trigger actions.
@@ -40,9 +40,14 @@ recorder = None
 
 rhino = pvrhino.create(
     # Write here the AccessKey obtained from Picovoice Console (https://console.picovoice.ai/)
-    access_key="ACCESS_KEY",
+    access_key="ACCESSKEY",
     # Insert here the path of your .rhn file, downloaded from Picovoice
-    context_path="picovoicePythonArduino/picovoicePythonLib/help-me_en_mac_v2_1_0.rhn"
+    context_path="picovoicePythonArduino/pythonPicovoice/parrot_en_mac_v3_0_0.rhn",
+    # If set to `True`, Rhino requires an endpoint (a chunk of silence) after the spoken command. If set to "
+    #         "`False`, Rhino tries to detect silence, but if it cannot, it still will provide inference regardless. "
+    #         "Set to `False` only if operating in an environment with overlapping speech (e.g. people talking in the "
+    #         "background).
+    require_endpoint="false"
     )
 
 recorder = PvRecorder(device_index=-1, frame_length=rhino.frame_length)
@@ -73,11 +78,9 @@ while True:
             print('  }')
             print('}\n')
             print(inference.intent)
-
-            # Insert here the conditions to trigger Arduino
-            if inference.intent == "projector":
-                 arduinoWrite("Hello")
+            arduinoWrite(inference.intent + inference.slots["object"])
             
         else:
             # Insert here the conditions to trigger Arduino if the system will not recognise the command
             print("Didn't understand the command.\n")
+            arduinoWrite("NotUnderstood")
