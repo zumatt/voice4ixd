@@ -38,6 +38,7 @@ def arduinoWrite(x):
 access_key = "ACCESSKEY"
 keyword_paths = ["picovoiceCompletePythonArduino/pythonPicovoice/Hey-parrot_en_mac_v3_0_0.ppn"]
 sensitivities = [0.5] * len(keyword_paths)
+timeout = 5
 
 porcupine = pvporcupine.create(
     access_key=access_key,
@@ -87,11 +88,12 @@ while True:
                     print('}\n')
                     print(inference.intent)
                     arduinoWrite(inference.intent + inference.slots["object"])
+                    start_time = time()
                 else:
                     print("Didn't understand the command.\n")
                     arduinoWrite("NotUnderstood")
             
-            if time() - start_time > 10:
+            if time() - start_time > timeout:
                 print("Timeout reached, stopping Rhino processing.")
                 # Break the inner loop when Rhino has finalized processing
                 break
