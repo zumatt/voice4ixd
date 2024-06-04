@@ -19,7 +19,7 @@ To use the system you need to follow these steps:
   4. Upload the code to your Arduino;
 
 ## Python + Picovoice Rhino and Arduino
-Inside the folder *picovoicePythonArduino* you will find:
+Inside the folder *picovoiceRhinoPythonArduino* you will find:
   1. A folder called *arduinoReadingFromPython* that contains the `.ino` file for any Arduino Board;
   2. A folder called *picovoicePythonArduino* that contains the library that you can create and download from [Rhino Picovoice Console](https://console.picovoice.ai/rhn);
   3. A file called `triggerRhinoPicovoice.py` that contains the script to check intents from voice and send it to Arduino.
