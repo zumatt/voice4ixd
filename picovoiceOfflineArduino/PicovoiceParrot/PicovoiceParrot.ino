@@ -15,7 +15,7 @@
 
 #define MEMORY_BUFFER_SIZE (70 * 1024)
 
-static const char *ACCESS_KEY = "OUnFwIS2unoePUa+wbkrtPvKKWw9bwXTGH+awCp9yqnbmtAb2IbrjA=="; // AccessKey string obtained from Picovoice Console (https://picovoice.ai/console/)
+static const char *ACCESS_KEY = "ACCESSKEY"; // AccessKey string obtained from Picovoice Console (https://picovoice.ai/console/)
 
 static pv_picovoice_t *handle = NULL;
 
